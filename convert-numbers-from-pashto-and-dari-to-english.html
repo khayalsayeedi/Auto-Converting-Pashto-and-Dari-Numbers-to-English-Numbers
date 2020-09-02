@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>Auto Convert Pashto and Dari Numbers to English Numbers</title>
+</head>
+<body>
+<input id="a1" onkeypress="ChangeNumbers1(event, 'a1');" oninput="ChangeNumbers2(event, 'a1');" dir="ltr" type="text"/>
+<input id="a2" onkeypress="ChangeNumbers1(event, 'a2');" oninput="ChangeNumbers2(event, 'a2');" type="text"/>
+<input id="a3" onkeypress="ChangeNumbers1(event, 'a3');" oninput="ChangeNumbers2(event, 'a3');" type="text"/>
+<input id="a4" onkeypress="ChangeNumbers1(event, 'a4');" oninput="ChangeNumbers2(event, 'a4');" type="text"/>
+<script>
+//By Khayal Pacha - 2020 / sept / 02
+var v2 = -1; // flag!
+function ChangeNumbers1(e, name) // check only English Numbers!
+{
+	var keyCode = e.charCode? e.charCode : e.keyCode
+    if (keyCode == 46 || keyCode == 0x002E || (keyCode >= 48 && keyCode <= 57)) {
+
+    }
+	else if (keyCode == 0x06F0 || keyCode == 0x06F1 || keyCode == 0x06F2 || keyCode == 0x06F3 || keyCode == 0x06F4 || keyCode == 0x06F5 || keyCode == 0x06F6 || keyCode == 0x06F7 || keyCode == 0x06F8 || keyCode == 0x06F9 || keyCode == 0x002E || keyCode == 0x002C)
+	{
+		if(keyCode == 0x06F0)
+		{
+			v2 = 0;
+		}
+		else if(keyCode == 0x06F1)
+		{
+			v2 = 1;
+		}
+		else if(keyCode == 0x06F2)
+		{
+			v2 = 2;
+		}
+		else if(keyCode == 0x06F3)
+		{
+			v2 = 3;
+		}
+		else if(keyCode == 0x06F4)
+		{
+			v2 = 4;
+		}
+		else if(keyCode == 0x06F5)
+		{
+			v2 = 5;
+		}
+		else if(keyCode == 0x06F6)
+		{
+			v2 = 6;
+		}
+		else if(keyCode == 0x06F7)
+		{
+			v2 = 7;
+		}
+		else if(keyCode == 0x06F8)
+		{
+			v2 = 8;
+		}
+		else if(keyCode == 0x06F9)
+		{
+			v2 = 9;
+		}
+		else
+		{
+			v2 = -1;
+		}
+	}
+	else
+	{
+		e.preventDefault();
+	}	
+		
+}
+
+function ChangeNumbers2(e, name) // Change Pashto and Dari Numbers to English
+{
+	if( v2 != -1)
+	{
+		switch(v2)
+		{
+			case 0:
+				changeNumberToEng(0, name);
+				v2 = -1;
+				break;
+				
+			case 1:
+				changeNumberToEng(1, name);
+				v2 = -1;
+				break;
+				
+			case 2:
+				changeNumberToEng(2, name);
+				v2 = -1;
+				break;
+				
+			case 3:
+				changeNumberToEng(3, name);
+				v2 = -1;
+				break;
+				
+			case 4:
+				changeNumberToEng(4, name);
+				v2 = -1;
+				break;
+				
+			case 5:
+				changeNumberToEng(5, name);
+				v2 = -1;
+				break;
+				
+			case 6:
+				changeNumberToEng(6, name);
+				v2 = -1;
+				break;
+				
+			case 7:
+				changeNumberToEng(7, name);
+				v2 = -1;
+				break;
+				
+			case 8:
+				changeNumberToEng(8, name);
+				v2 = -1;
+				break;
+				
+			case 9:
+				changeNumberToEng(9, name);
+				v2 = -1;
+				break;
+				
+		}
+	}
+	
+	if(char_count(name, '.') > 1){
+		changeNumberToEng('', name);
+	}
+	
+}
+
+function setCharAt(str,index,chr) {
+    if(index > str.length-1) return str;
+    return str.substr(0,index) + chr + str.substr(index+1);
+}
+
+function changeNumberToEng(num, name){
+	var str = document.getElementById(name).value;
+	var res = str.substring(str.length - 1, str.length);
+	var li = str.lastIndexOf(res);
+	var ns = setCharAt(str, li, num);
+	document.getElementById(name).value = ns;
+}
+
+function char_count(name, letter)  // used to avoid two decimal points 
+{
+ var letter_Count = 0;
+ var str = document.getElementById(name).value;
+ 
+ for (var position = 0; position < str.length; position++) 
+ {
+    if (str.charAt(position) == letter) 
+      {
+      letter_Count += 1;
+      }
+  }
+  return letter_Count;
+}
+
+</script>
+</body>
+</html>
